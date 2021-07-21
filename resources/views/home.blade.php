@@ -1,97 +1,158 @@
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 10px;
+            background: #f1f1f1;
+        }
+
+        /* Header/Blog Title */
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: white;
+        }
+
+        .header h1 {
+            font-size: 50px;
+        }
+
+        /* Style the top navigation bar */
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        /* Style the topnav links */
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Change color on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        /* Left column */
+        .leftcolumn {
+            float: left;
+            width: 75%;
+        }
+
+        /* Right column */
+        .rightcolumn {
+            float: left;
+            width: 25%;
+            background-color: #f1f1f1;
+            padding-left: 20px;
+        }
+
+        /* Fake image */
+        .fakeimg {
+            background-color: #aaa;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Add a card effect for articles */
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+            margin-top: 20px;
+        }
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 800px) {
+            .leftcolumn, .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+        /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+        @media screen and (max-width: 400px) {
+            .topnav a {
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-        <a href="#home" class="w3-bar-item w3-button">Luxury apartment</a>
-        <!-- Float links to the right. Hide them on small screens -->
-        <div class="w3-right w3-hide-small">
-            <a href="#projects" class="w3-bar-item w3-button">Product</a>
-            <a href="#about" class="w3-bar-item w3-button">About</a>
-            <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+<div class="header">
+    <h1>Sweet Home</h1>
+</div>
+
+<div class="topnav">
+    <a href="#">Home</a>
+    <a href="#">Best Home</a>
+    <a href="#">Life style</a>
+    <a href="#">About us</a>
+    <a href="#">Contact us</a>
+</div>
+<div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                @foreach($list as $item)
+                <div><img src="{{$item->image}}" style="width: 100%" alt=""></div>
+                <div><a>{{ $item->name }}</a></div>
+                <div>{{$item->information}}</div>
+                <div>{{$item->address}}</div>
+                <div><b>{{$item->price}}</b></div>
+                @endforeach
+            </div>
+        </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <h3>Search By Area</h3>
+            <div><a href="#">District 1</a></div>
+            <div><a href="#">District 2</a></div>
+            <div><a href="#">District 3</a></div>
+            <div><a href="#">District 4</a></div>
+            <div><a href="#">District 5</a></div>
+        </div>
+        <div class="card">
+            <h3>Search By Price</h3>
+            <div><a href="#">< 10000</a>$</div>
+            <div><a href="#">10000 - 15000</a>$</div>
+            <div><a href="#">15000 - 30000</a>$</div>
+            <div><a href="#">30000 - 50000</a>$</div>
+            <div><a href="#">> 50000</a>$</div>
         </div>
     </div>
 </div>
-
-<div class="w3-content w3-padding" style="max-width:1564px">
-
-    <!-- Project Section -->
-    <div class="w3-container w3-padding-32" id="projects">
-        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Product</h3>
-    </div>
-
-    <div class="w3-row-padding">
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Vinhomes Gardenia</div>
-                <img src="https://lh3.googleusercontent.com/proxy/Y0zy7LFoErA-lQxXKXjQDrFiM4pfvqTwQDHd6GAmGIA-SivqBXXarhVSxyD8XPTGyXVf2wuoOCrojzWrOEUWXHWK_C8nQWyznM4G2DFRdH4xbVnTYM5pH9IXQL-9tRDS4jtWfYldHeTaBKnR" alt="House" style="width:100%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Ruby Tower</div>
-                <img src="https://datxanhmienbac.com.vn/public/uploads/source/du-an-bds/chung-cu/ruby-tower-thanh-hoa/03-min.png" alt="House" style="width:100%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Happy One</div>
-                <img src="https://www.happyonebinhduong.com/uploads/canhohappyonebinhduong/gallery/1559633168_happyone11.png" alt="House" style="width:100%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Barn House</div>
-                <img src="/w3images/house4.jpg" alt="House" style="width:100%">
-            </div>
-        </div>
-    </div>
-
-    <div class="w3-row-padding">
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Summer House</div>
-                <img src="/w3images/house2.jpg" alt="House" style="width:99%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Brick House</div>
-                <img src="/w3images/house5.jpg" alt="House" style="width:99%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Renovated</div>
-                <img src="/w3images/house4.jpg" alt="House" style="width:99%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Barn House</div>
-                <img src="/w3images/house3.jpg" alt="House" style="width:99%">
-            </div>
-        </div>
-    </div>
-    <!-- Contact Section -->
-    <div class="w3-container w3-padding-32" id="contact">
-        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
-        <p>Lets get in touch and talk about your next project.</p>
-        <form action="/action_page.php" target="_blank">
-            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-            <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
-            <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
-            <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
-            <button class="w3-button w3-black w3-section" type="submit">
-                <i class="fa fa-paper-plane"></i> SEND MESSAGE
-            </button>
-        </form>
-    </div>
+<div class="footer">
+    <p>PVHUNG © Copyright 2021</p>
 </div>
+{{--@include('pagination', ['pagination' => $list])--}}
 </body>
 </html>
